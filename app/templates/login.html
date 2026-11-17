@@ -1,0 +1,285 @@
+
+{% extends "base.html" %}
+
+{% block title %}Log in · LaunchForge{% endblock %}
+
+{% block content %}
+<div class="register-layout">
+
+  <section class="register-intro">
+    <div class="intro-label">
+      <span class="status-dot"></span>
+      GOOD TO HAVE YOU BACK
+    </div>
+
+    <h1>
+      Your next big
+      <span>idea awaits.</span>
+    </h1>
+
+    <p>
+      Pick up where you left off. Access your startup blueprints,
+      explore new opportunities and keep building.
+    </p>
+
+    <div class="intro-points">
+      <div><span>01</span> Access your saved plans</div>
+      <div><span>02</span> Continue building your ideas</div>
+      <div><span>03</span> Discover new opportunities</div>
+    </div>
+  </section>
+
+  <section class="register-form-section">
+    <div class="register-card">
+
+      <div class="form-heading">
+        <div class="form-mark">✦</div>
+        <h2>Welcome back</h2>
+        <p class="muted">Log in to your LaunchForge account.</p>
+      </div>
+
+      {% if error %}
+        <div class="error">{{ error }}</div>
+      {% endif %}
+
+      <form method="post" action="/login" class="register-form">
+
+        <div class="field">
+          <label for="email">Email address</label>
+          <input
+            id="email"
+            type="email"
+            name="email"
+            value="{{ form.get('email', '') }}"
+            placeholder="you@example.com"
+            autocomplete="email"
+            required
+          >
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            name="password"
+            placeholder="Enter your password"
+            autocomplete="current-password"
+            required
+          >
+        </div>
+
+        <button class="btn register-submit" type="submit">
+          Log in to your account <span>→</span>
+        </button>
+
+      </form>
+
+      <div class="register-login">
+        <span class="muted">Don't have an account?</span>
+        <a href="/register">Create one</a>
+      </div>
+
+    </div>
+  </section>
+
+</div>
+
+<style>
+  .register-layout {
+    max-width: 1080px;
+    min-height: 76vh;
+    margin: 0 auto;
+    padding: 65px 24px;
+    display: grid;
+    grid-template-columns: 1fr 0.85fr;
+    align-items: center;
+    gap: 90px;
+  }
+
+  .register-intro {
+    max-width: 470px;
+  }
+
+  .intro-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--green-light);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 28px;
+  }
+
+  .status-dot {
+    width: 7px;
+    height: 7px;
+    background: var(--green);
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgba(34, 197, 94, 0.6);
+  }
+
+  .register-intro h1 {
+    font-size: clamp(40px, 5vw, 58px);
+    line-height: 1.08;
+    letter-spacing: -2.5px;
+    margin: 0 0 22px;
+    font-weight: 750;
+  }
+
+  .register-intro h1 span {
+    display: block;
+    color: var(--green-light);
+  }
+
+  .register-intro > p {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.9;
+    max-width: 410px;
+  }
+
+  .intro-points {
+    margin-top: 38px;
+    display: grid;
+    gap: 17px;
+  }
+
+  .intro-points div {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: var(--text);
+    font-size: 13px;
+  }
+
+  .intro-points span {
+    color: var(--green-light);
+    font-family: monospace;
+    font-size: 12px;
+  }
+
+  .register-form-section {
+    width: 100%;
+  }
+
+  .register-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 34px;
+  }
+
+  .form-heading {
+    margin-bottom: 28px;
+  }
+
+  .form-mark {
+    color: var(--green-light);
+    font-size: 22px;
+    margin-bottom: 17px;
+  }
+
+  .form-heading h2 {
+    font-size: 23px;
+    letter-spacing: -0.7px;
+    margin: 0 0 8px;
+  }
+
+  .form-heading p {
+    font-size: 13px;
+    margin: 0;
+  }
+
+  .register-form {
+    display: grid;
+    gap: 19px;
+  }
+
+  .field {
+    display: grid;
+    gap: 8px;
+  }
+
+  .field label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .field input {
+    box-sizing: border-box;
+    width: 100%;
+    background: #080B09;
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 13px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .field input:focus {
+    outline: none;
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+  }
+
+  .field input::placeholder {
+    color: #64748b;
+  }
+
+  .register-submit {
+    width: 100%;
+    margin-top: 5px;
+    padding: 13px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 650;
+  }
+
+  .register-login {
+    border-top: 1px solid var(--border);
+    margin-top: 25px;
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    font-size: 12px;
+  }
+
+  .register-login a {
+    color: var(--green-light);
+    font-weight: 650;
+    text-decoration: none;
+  }
+
+  .register-login a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 760px) {
+    .register-layout {
+      grid-template-columns: 1fr;
+      gap: 35px;
+      padding: 40px 18px;
+      max-width: 480px;
+    }
+
+    .register-intro h1 {
+      font-size: 40px;
+    }
+
+    .intro-points {
+      margin-top: 22px;
+    }
+
+    .register-card {
+      padding: 25px 21px;
+    }
+  }
+</style>
+{% endblock %}

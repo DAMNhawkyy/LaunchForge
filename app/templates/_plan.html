@@ -1,0 +1,510 @@
+
+<style>
+.plan-document {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.plan-hero {
+    background: linear-gradient(135deg, #101a13, #0d120f 65%);
+    border: 1px solid #22c55e30;
+    border-radius: 15px;
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.plan-hero::after {
+    content: "✦";
+    position: absolute;
+    right: 28px;
+    top: 18px;
+    font-size: 90px;
+    color: #22c55e;
+    opacity: .045;
+    pointer-events: none;
+}
+
+.plan-category {
+    display: inline-flex;
+    background: #22c55e15;
+    color: #4ade80;
+    border: 1px solid #22c55e30;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 10px;
+    font-weight: 750;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.plan-name {
+    color: #f8fafc;
+    font-size: clamp(27px, 4vw, 36px);
+    font-weight: 800;
+    letter-spacing: -1.3px;
+    margin: 17px 0 8px;
+}
+
+.plan-tagline {
+    color: #4ade80;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.6;
+    margin: 0 0 20px;
+}
+
+.plan-pitch {
+    color: #cbd5e1;
+    font-size: 14px;
+    line-height: 1.9;
+    max-width: 760px;
+    margin: 0;
+}
+
+.plan-alternatives {
+    margin-top: 23px;
+    padding-top: 17px;
+    border-top: 1px solid #ffffff12;
+    color: #94a3b8;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.plan-section {
+    background: #0d120f;
+    border: 1px solid #ffffff12;
+    border-radius: 13px;
+    padding: 23px;
+    min-width: 0;
+}
+
+.plan-section h2 {
+    color: #f8fafc;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -.3px;
+    margin: 0 0 15px;
+}
+
+.plan-section h3 {
+    color: #e2e8f0;
+    font-size: 13px;
+    font-weight: 650;
+    margin: 18px 0 8px;
+}
+
+.plan-section p {
+    color: #aab7c5;
+    font-size: 13px;
+    line-height: 1.85;
+    margin: 0 0 12px;
+}
+
+.plan-section ul {
+    padding-left: 20px;
+    margin: 0;
+}
+
+.plan-section li {
+    color: #aab7c5;
+    font-size: 13px;
+    line-height: 1.8;
+    padding-left: 3px;
+    margin-bottom: 5px;
+}
+
+.plan-section li::marker {
+    color: #4ade80;
+}
+
+.plan-persona {
+    background: #ffffff05;
+    border: 1px solid #ffffff0d;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 12px;
+}
+
+.plan-persona:last-child {
+    margin-bottom: 0;
+}
+
+.plan-persona strong {
+    display: block;
+    color: #4ade80;
+    font-size: 13px;
+    margin-bottom: 7px;
+}
+
+.plan-persona p {
+    margin-bottom: 10px;
+}
+
+.plan-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid #ffffff10;
+    border-radius: 9px;
+}
+
+.plan-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 480px;
+    font-size: 12px;
+}
+
+.plan-table th {
+    background: #ffffff08;
+    color: #94a3b8;
+    font-size: 10px;
+    font-weight: 750;
+    letter-spacing: .7px;
+    text-align: left;
+    text-transform: uppercase;
+    padding: 13px;
+}
+
+.plan-table td {
+    color: #cbd5e1;
+    padding: 13px;
+    border-top: 1px solid #ffffff0c;
+    line-height: 1.7;
+    vertical-align: top;
+}
+
+.plan-table tr:hover td {
+    background: #ffffff04;
+}
+
+.plan-table .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 5px;
+    background: #ffffff0c;
+    color: #cbd5e1;
+}
+
+.plan-table .high,
+.plan-table .critical {
+    background: #ef444418;
+    color: #fca5a5;
+}
+
+.plan-table .medium {
+    background: #f59e0b18;
+    color: #fcd34d;
+}
+
+.plan-table .low {
+    background: #22c55e15;
+    color: #4ade80;
+}
+
+.plan-competitor {
+    padding: 15px 0;
+    border-bottom: 1px solid #ffffff10;
+}
+
+.plan-competitor:first-of-type {
+    padding-top: 0;
+}
+
+.plan-competitor:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+}
+
+.plan-competitor strong {
+    display: block;
+    color: #f8fafc;
+    font-size: 14px;
+    margin-bottom: 9px;
+}
+
+.plan-competitor p {
+    margin: 5px 0;
+    font-size: 12px;
+}
+
+.plan-competitor em {
+    color: #4ade80;
+    font-style: normal;
+    font-weight: 650;
+}
+
+.plan-phase {
+    padding: 15px 0;
+    border-bottom: 1px solid #ffffff10;
+}
+
+.plan-phase:first-of-type {
+    padding-top: 0;
+}
+
+.plan-phase:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+}
+
+.plan-phase strong {
+    display: block;
+    color: #4ade80;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.plan-disclaimer {
+    background: #22c55e09;
+    border: 1px solid #22c55e25;
+    border-radius: 11px;
+    padding: 18px 21px;
+    color: #94a3b8;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.plan-disclaimer strong {
+    color: #4ade80;
+    display: block;
+    margin-bottom: 5px;
+}
+
+@media (max-width: 600px) {
+    .plan-hero {
+        padding: 22px;
+    }
+
+    .plan-section {
+        padding: 18px;
+    }
+
+    .plan-table {
+        min-width: 440px;
+    }
+}
+</style>
+
+<div class="plan-document">
+
+    <section class="plan-hero">
+        <span class="plan-category">{{ plan.category }}</span>
+
+        <h1 class="plan-name">{{ plan.startupName }}</h1>
+
+        <p class="plan-tagline">{{ plan.tagline }}</p>
+
+        <p class="plan-pitch">{{ plan.elevatorPitch }}</p>
+
+        <div class="plan-alternatives">
+            <strong>Alternative names:</strong>
+            {{ plan.alternativeNames | join(", ") }}
+        </div>
+    </section>
+
+    <section class="plan-section">
+        <h2>01. Problem & Solution</h2>
+
+        <h3>The problem</h3>
+        <p>{{ plan.problemStatement }}</p>
+
+        <h3>Our proposed solution</h3>
+        <p>{{ plan.proposedSolution }}</p>
+    </section>
+
+    <section class="plan-section">
+        <h2>02. Target Audience</h2>
+        <ul>
+            {% for a in plan.targetAudience %}
+                <li>{{ a }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section class="plan-section">
+        <h2>03. User Personas</h2>
+
+        {% for p in plan.userPersonas %}
+            <div class="plan-persona">
+                <strong>{{ p.name }}</strong>
+                <p>{{ p.description }}</p>
+
+                <h3>Needs and expectations</h3>
+                <ul>
+                    {% for n in p.needs %}
+                        <li>{{ n }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+    </section>
+
+    <section class="plan-section">
+        <h2>04. Unique Selling Proposition</h2>
+        <p>{{ plan.uniqueSellingProposition }}</p>
+    </section>
+
+    <section class="plan-section">
+        <h2>05. MVP Features</h2>
+
+        <div class="plan-table-wrap">
+            <table class="plan-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Description</th>
+                        <th>Priority</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for f in plan.mvpFeatures %}
+                        <tr>
+                            <td><strong>{{ f.name }}</strong></td>
+                            <td>{{ f.description }}</td>
+                            <td>
+                                <span class="badge {{ f.priority | lower }}">
+                                    {{ f.priority }}
+                                </span>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="plan-section">
+        <h2>06. Business Model</h2>
+        <p>{{ plan.businessModel }}</p>
+
+        <h3>Pricing Strategy</h3>
+        <ul>
+            {% for p in plan.pricingStrategy %}
+                <li>{{ p }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section class="plan-section">
+        <h2>07. Competitor Analysis</h2>
+        <p style="font-size:11px;color:#64748b">
+            Research leads only. Verify competitor information independently.
+        </p>
+
+        {% for c in plan.competitorAnalysis %}
+            <div class="plan-competitor">
+                <strong>{{ c.competitor }}</strong>
+
+                <p>
+                    <em>Strengths:</em>
+                    {{ c.strengths | join("; ") }}
+                </p>
+
+                <p>
+                    <em>Weaknesses:</em>
+                    {{ c.weaknesses | join("; ") }}
+                </p>
+
+                <p>
+                    <em>How to differentiate:</em>
+                    {{ c.differentiation }}
+                </p>
+            </div>
+        {% endfor %}
+    </section>
+
+    <section class="plan-section">
+        <h2>08. Estimated Startup Costs</h2>
+        <p style="font-size:11px;color:#64748b">
+            Approximate estimates in Indian Rupees (INR).
+        </p>
+
+        <div class="plan-table-wrap">
+            <table class="plan-table">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Estimated Cost</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for c in plan.estimatedStartupCosts %}
+                        <tr>
+                            <td><strong>{{ c.item }}</strong></td>
+                            <td>{{ c.estimatedCost }}</td>
+                            <td>{{ c.description }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="plan-section">
+        <h2>09. Launch Plan</h2>
+
+        {% for ph in plan.launchPlan %}
+            <div class="plan-phase">
+                <strong>{{ ph.phase }}</strong>
+                <ul>
+                    {% for t in ph.tasks %}
+                        <li>{{ t }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+    </section>
+
+    <section class="plan-section">
+        <h2>10. Risks & Mitigation</h2>
+
+        <div class="plan-table-wrap">
+            <table class="plan-table">
+                <thead>
+                    <tr>
+                        <th>Risk</th>
+                        <th>Severity</th>
+                        <th>Mitigation</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for r in plan.risks %}
+                        <tr>
+                            <td><strong>{{ r.risk }}</strong></td>
+                            <td>
+                                <span class="badge {{ r.severity | lower }}">
+                                    {{ r.severity }}
+                                </span>
+                            </td>
+                            <td>{{ r.mitigation }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="plan-section">
+        <h2>11. Assumptions</h2>
+        <ul>
+            {% for a in plan.assumptions %}
+                <li>{{ a }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <div class="plan-disclaimer">
+        <strong>Important Disclaimer</strong>
+        {{ plan.disclaimer }}
+    </div>
+
+</div>

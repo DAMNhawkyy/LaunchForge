@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}{{ s.startup_name }} · Launchforge{% endblock %}
+{% block content %}
+{% if is_owner %}
+<div class="card row">
+  <span>{% if s.is_public %}<span class="badge">Public</span>{% else %}<span class="badge">Private</span>{% endif %}</span>
+  <form method="post" action="/startups/{{ s.id }}/toggle-public" style="margin-left:auto">
+    <button class="btn ghost small" type="submit">{{ "Unpublish" if s.is_public else "Publish" }}</button></form>
+  <form method="post" action="/startups/{{ s.id }}/delete" onsubmit="return confirm('Delete this plan?')">
+    <button class="btn danger small" type="submit">Delete</button></form>
+</div>
+{% endif %}
+<p class="muted">Original idea: {{ s.original_idea }}</p>
+{% include "_plan.html" %}
+{% endblock %}

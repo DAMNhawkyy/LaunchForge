@@ -1,0 +1,612 @@
+{% extends "base.html" %}
+
+{% block title %}LaunchForge — Build Your Next Big Idea{% endblock %}
+
+{% block content %}
+
+<style>
+
+/* LANDING PAGE */
+
+.landing {
+  overflow: hidden;
+}
+
+/* CENTERED HERO */
+
+.landing-hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 420px;
+  padding: 45px 20px;
+  position: relative;
+}
+
+.hero-copy {
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.hero-heading {
+  margin: 0px 0 12px;
+  font-size: clamp(3rem, 5vw, 5rem);
+  line-height: 1.04;
+  letter-spacing: -3.5px;
+  font-weight: 850;
+}
+
+.hero-heading .accent {
+  color: #4ADE80;
+}
+
+.hero-description {
+  max-width: 510px;
+  margin: 0 auto;
+  color: #94A3B8;
+  font-size: 1.08rem;
+  line-height: 1.85;
+}
+
+.hero-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: 13px;
+  margin-top: 32px;
+}
+
+.hero-actions .btn {
+  min-height: 48px;
+  padding: 12px 21px;
+}
+
+/* TRUST STRIP */
+
+.landing-divider {
+  border: 0;
+  border-top: 1px solid rgba(255,255,255,.07);
+}
+
+.trust-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 35px;
+  padding: 27px 0;
+  color: #64748B;
+  font-size: .8rem;
+}
+
+.trust-strip strong {
+  color: #CBD5E1;
+  font-weight: 650;
+}
+
+/* SECTIONS */
+
+.landing-section {
+  padding: 90px 0;
+}
+
+.section-heading {
+  max-width: 620px;
+  margin: 0 auto 43px;
+  text-align: center;
+}
+
+.section-kicker {
+  color: #4ADE80;
+  font-size: .72rem;
+  font-weight: 750;
+  letter-spacing: 1.6px;
+}
+
+.section-heading h2 {
+  margin: 15px 0 12px;
+  font-size: clamp(1.9rem, 4vw, 2.7rem);
+  letter-spacing: -1.3px;
+}
+
+.section-heading p {
+  margin: 0;
+  line-height: 1.8;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 17px;
+}
+
+.step-card {
+  position: relative;
+  padding: 27px;
+  min-height: 235px;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 14px;
+  background: #0D120F;
+  transition: border-color .2s ease, transform .2s ease;
+}
+
+.step-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(74,222,128,.3);
+}
+
+.step-number {
+  display: inline-block;
+  margin-bottom: 25px;
+  color: #4ADE80;
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.step-card h3 {
+  margin: 0 0 10px;
+  color: #F1F5F9;
+  font-size: 1.12rem;
+}
+
+.step-card p {
+  margin: 0;
+  font-size: .9rem;
+  line-height: 1.8;
+}
+
+/* FEATURE SECTION */
+
+.feature-section {
+  display: grid;
+  grid-template-columns: .9fr 1.1fr;
+  gap: 65px;
+  align-items: center;
+  padding: 65px 0 95px;
+}
+
+.feature-copy h2 {
+  margin: 15px 0;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  letter-spacing: -1.4px;
+}
+
+.feature-copy > p {
+  line-height: 1.85;
+}
+
+.feature-list {
+  display: grid;
+  gap: 18px;
+  margin-top: 28px;
+}
+
+.feature-item {
+  display: flex;
+  gap: 13px;
+  align-items: flex-start;
+}
+
+.feature-check {
+  display: grid;
+  place-items: center;
+  width: 25px;
+  height: 25px;
+  flex-shrink: 0;
+  border-radius: 7px;
+  background: rgba(34,197,94,.12);
+  color: #4ADE80;
+  font-weight: 800;
+  font-size: .8rem;
+}
+
+.feature-item strong {
+  display: block;
+  color: #E2E8F0;
+  font-size: .9rem;
+}
+
+.feature-item span {
+  display: block;
+  margin-top: 3px;
+  color: #64748B;
+  font-size: .82rem;
+  line-height: 1.6;
+}
+
+.feature-panel {
+  padding: 25px;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 16px;
+  background: #0D120F;
+}
+
+.feature-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.feature-panel-header strong {
+  color: #E2E8F0;
+  font-size: .9rem;
+}
+
+.feature-panel-header span {
+  color: #4ADE80;
+  font-size: .72rem;
+}
+
+.feature-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 15px 0;
+  border-top: 1px solid rgba(255,255,255,.07);
+}
+
+.feature-row span {
+  color: #94A3B8;
+  font-size: .84rem;
+}
+
+.feature-row strong {
+  color: #E2E8F0;
+  font-size: .82rem;
+  text-align: right;
+}
+
+/* FINAL CTA */
+
+.landing-cta {
+  position: relative;
+  overflow: hidden;
+  padding: 65px 25px;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 18px;
+  background: #0D120F;
+  text-align: center;
+}
+
+.landing-cta-content {
+  position: relative;
+  z-index: 1;
+}
+
+.landing-cta h2 {
+  margin: 17px 0 12px;
+  font-size: clamp(1.9rem, 4vw, 2.7rem);
+  letter-spacing: -1.2px;
+}
+
+.landing-cta p {
+  max-width: 510px;
+  margin: 0 auto 25px;
+  line-height: 1.8;
+}
+
+.landing-disclaimer {
+  margin: 28px 0 0;
+  padding: 15px 18px;
+  border-left: 2px solid #64748B;
+  background: rgba(255,255,255,.025);
+  color: #64748B;
+  font-size: .78rem;
+  line-height: 1.7;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 850px) {
+  .feature-section {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+}
+
+@media (max-width: 650px) {
+  .landing-hero {
+  min-height: auto;
+  padding: 40px 10px;
+  }
+
+  .hero-heading {
+    font-size: clamp(2.7rem, 12vw, 4rem);
+    letter-spacing: -2px;
+  }
+
+  .steps-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .step-card {
+    min-height: auto;
+  }
+
+  .landing-section {
+    padding: 65px 0;
+  }
+
+  .trust-strip {
+    gap: 15px 23px;
+  }
+
+  .landing-cta {
+    padding: 48px 18px;
+  }
+}
+
+@media (max-width: 420px) {
+  .hero-actions .btn {
+    width: 100%;
+  }
+}
+    .floating-note {
+      position: relative;
+      right: auto;
+      bottom: auto;
+      width: fit-content;
+      margin: 14px auto 0;
+    }
+
+    .hero-actions {
+      flex-direction: column;
+    }
+
+    .hero-actions .btn {
+      width: 30%;
+    }
+
+    .landing-hero .hero-actions {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 13px;
+}
+
+.landing-hero .hero-actions .btn {
+  display: inline-flex !important;
+  width: auto !important;
+  flex: 0 0 auto !important;
+  white-space: nowrap;
+}
+</style>
+
+<div class="landing">
+
+  <!-- HERO -->
+
+  <section class="landing-hero landing-hero-centered">
+  <div class="hero-copy">
+
+    <h1 class="hero-heading">
+      From Idea to<br>
+      <span class="accent">Execution.</span>
+    </h1>
+
+    <p class="hero-description">
+      Every great startup begins with an idea.
+      LaunchForge helps you turn yours into a structured
+      blueprint.
+    </p>
+
+    <div class="hero-actions">
+      {% if user %}
+        <a class="btn" href="/generate">
+          Build your startup <span>→</span>
+        </a>
+      {% else %}
+        <a class="btn" href="/register">
+          Build your startup <span>→</span>
+        </a>
+      {% endif %}
+
+      <a class="btn ghost" href="/explore">
+        Explore ideas
+      </a>
+    </div>
+
+  </div>
+</section>
+
+  <hr class="landing-divider">
+
+  <!-- TRUST STRIP -->
+
+  <div class="trust-strip">
+    <span>Built for <strong>early-stage founders</strong></span>
+    <span>Designed for <strong>first-time builders</strong></span>
+    <span>Powered by <strong>AI assistance</strong></span>
+  </div>
+
+  <hr class="landing-divider">
+
+  <!-- HOW IT WORKS -->
+
+  <section class="landing-section">
+
+    <div class="section-heading">
+      <span class="section-kicker">HOW IT WORKS</span>
+
+      <h2>From idea to action.</h2>
+
+      <p>
+        You bring the idea. LaunchForge helps organize
+        the thinking behind turning it into something real.
+      </p>
+    </div>
+
+    <div class="steps-grid">
+
+      <article class="step-card">
+        <span class="step-number">01 / START</span>
+
+        <h3>Share your idea</h3>
+
+        <p>
+          Describe the problem you want to solve,
+          the people you want to help and your vision.
+        </p>
+      </article>
+
+      <article class="step-card">
+        <span class="step-number">02 / CREATE</span>
+
+        <h3>Build your blueprint</h3>
+
+        <p>
+          Generate a structured plan covering your pitch,
+          audience, MVP, business model, competitors and risks.
+        </p>
+      </article>
+
+      <article class="step-card">
+        <span class="step-number">03 / MOVE</span>
+
+        <h3>Save and explore</h3>
+
+        <p>
+          Keep your startup plans organized, revisit your
+          concepts and explore ideas shared by others.
+        </p>
+      </article>
+
+    </div>
+
+  </section>
+
+  <!-- FEATURES -->
+
+  <section class="feature-section">
+
+    <div class="feature-copy">
+
+      <span class="section-kicker">MORE THAN A NAME</span>
+
+      <h2>Give your idea a direction.</h2>
+
+      <p>
+        A startup is more than a catchy name or a clever pitch.
+        You need to understand the people, the problem and
+        the steps involved in bringing your idea to life.
+      </p>
+
+      <div class="feature-list">
+
+        <div class="feature-item">
+          <div class="feature-check">✓</div>
+          <div>
+            <strong>Understand your audience</strong>
+            <span>Explore target users and customer personas.</span>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-check">✓</div>
+          <div>
+            <strong>Plan what to build</strong>
+            <span>Identify MVP features and your unique value.</span>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-check">✓</div>
+          <div>
+            <strong>Think beyond the launch</strong>
+            <span>Review competitors, estimated costs and risks.</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="feature-panel">
+
+      <div class="feature-panel-header">
+        <strong>Your startup blueprint</strong>
+        <span>● PLAN OVERVIEW</span>
+      </div>
+
+      <div class="feature-row">
+        <span>Startup identity</span>
+        <strong>Name & pitch</strong>
+      </div>
+
+      <div class="feature-row">
+        <span>Customer research</span>
+        <strong>Audience & personas</strong>
+      </div>
+
+      <div class="feature-row">
+        <span>Product direction</span>
+        <strong>MVP & features</strong>
+      </div>
+
+      <div class="feature-row">
+        <span>Market understanding</span>
+        <strong>Competitor analysis</strong>
+      </div>
+
+      <div class="feature-row">
+        <span>Business planning</span>
+        <strong>Model & pricing</strong>
+      </div>
+
+      <div class="feature-row">
+        <span>Execution</span>
+        <strong>Launch plan & risks</strong>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FINAL CTA -->
+
+  <section class="landing-cta">
+
+    <div class="landing-cta-content">
+
+      <span class="section-kicker">THE NEXT STEP STARTS HERE</span>
+
+      <h2>Have an idea worth building?</h2>
+
+      <p>
+        Don't let a good idea stay in your notes.
+        Give it structure, explore its potential and figure out
+        what your next move could be.
+      </p>
+
+      {% if user %}
+        <a class="btn" href="/generate">
+          Create your blueprint →
+        </a>
+      {% else %}
+        <a class="btn" href="/register">
+          Get started for free →
+        </a>
+      {% endif %}
+
+    </div>
+
+  </section>
+
+  <p class="landing-disclaimer">
+    <strong>Important:</strong> AI-generated startup plans are
+    suggestions and estimates, not guarantees of business success.
+    Always validate your ideas through independent research.
+  </p>
+
+</div>
+
+{% endblock %}
